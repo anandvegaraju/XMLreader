@@ -15,6 +15,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -47,7 +50,11 @@ public class DisplayXMLfile extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+        String parentnode = intent.getStringExtra("parent");
+        String tagnames = intent.getStringExtra("tags");
         String filepath  = intent.getStringExtra("filepath");
+        List<String> taglist = Arrays.asList(tagnames.split(";"));
+        int no_tags = taglist.size();
 
         String filecontent = readFileAsString(filepath);
         String displaytext = "";
@@ -64,24 +71,25 @@ public class DisplayXMLfile extends AppCompatActivity {
             is.setCharacterStream(new StringReader(filecontent));
 
             Document doc = db.parse(is);
-            NodeList nodes = doc.getElementsByTagName("ClientData");
+            NodeList nodes = doc.getElementsByTagName(parentnode);
 
             // iterate the employees
             for (int i = 0; i < nodes.getLength(); i++) {
                 Element element = (Element) nodes.item(i);
-
-                NodeList name = element.getElementsByTagName("Name");
+                NodeList name = element.getElementsByTagName(taglist.get(0));
                 Element line = (Element) name.item(0);
-                displaytext += "\nName :" + getCharacterDataFromElement(line);
+                displaytext += taglist.get(0) + " : " + getCharacterDataFromElement(line) + "\n";
 
-                NodeList address = element.getElementsByTagName("SandA");
-                line = (Element) address.item(0);
-                displaytext += "\nState and Address: " + getCharacterDataFromElement(line);
+                for (int j = 1; j < no_tags ; j++) {
+                    name = element.getElementsByTagName(taglist.get(j));
+                    line = (Element) name.item(0);
+                    displaytext += taglist.get(j) + " : " + getCharacterDataFromElement(line) + "\n";
+
+                }
+
+                displaytext += "----------------------------------------\n";
 
 
-                NodeList number = element.getElementsByTagName("Number");
-                line = (Element) number.item(0);
-                displaytext += "\nNumber: " + getCharacterDataFromElement(line) + "\n--------------";
 
 
 
