@@ -33,7 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Acer on 04-02-2017.
+ * Created by Anand on 04-02-2017.
  */
 
 public class DisplayXMLfile extends AppCompatActivity {
