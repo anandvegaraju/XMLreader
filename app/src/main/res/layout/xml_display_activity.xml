@@ -8,12 +8,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:fadeScrollbars="true"
         android:scrollIndicators="right"
         android:scrollbars="vertical"
         android:textColor="?attr/colorPrimary"
         android:textIsSelectable="true"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:verticalScrollbarPosition="right" />
 </RelativeLayout>
