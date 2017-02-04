@@ -87,7 +87,7 @@ public class DisplayXMLfile extends AppCompatActivity {
 
                 }
 
-                displaytext += "----------------------------------------\n";
+                displaytext += "-------------------------------------------------------\n";
 
 
 
