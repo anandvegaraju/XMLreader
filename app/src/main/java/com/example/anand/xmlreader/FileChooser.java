@@ -1,7 +1,7 @@
 package com.example.anand.xmlreader;
 
 /**
- * Created by Acer on 04-02-2017.
+ * Created by Anand on 04-02-2017.
  */
 
 import android.app.Activity;
@@ -26,7 +26,6 @@ public class FileChooser {
     private Dialog dialog;
     private File currentPath;
 
-    // filter on file extension
     private String extension = null;
     public void setExtension(String extension) {
         this.extension = (extension == null) ? null :
@@ -71,9 +70,7 @@ public class FileChooser {
     }
 
 
-    /**
-     * Sort, filter and display the files for the given path.
-     */
+
     private void refresh(File path) {
         this.currentPath = path;
         if (path.exists()) {
@@ -126,9 +123,7 @@ public class FileChooser {
     }
 
 
-    /**
-     * Convert a relative filename into an actual File object.
-     */
+
     private File getChosenFile(String fileChosen) {
         if (fileChosen.equals(PARENT_DIR)) {
             return currentPath.getParentFile();
